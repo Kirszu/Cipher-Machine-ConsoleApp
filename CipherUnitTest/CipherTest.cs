@@ -21,12 +21,39 @@ namespace CipherUnitTest
         }
 
         [TestMethod]
+        public void CaesarEncryptValidInputWithSpace()
+        {
+            // Arrange
+            CaesarCipher cipher = new CaesarCipher();
+            string input = "asdf test";
+            string expected = "fxik yjxy";
+            // Act
+            string actual = cipher.Encrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void CaesarDecryptValidInput()
         {
             // Arrange
             CaesarCipher cipher = new CaesarCipher();
             string input = "UZXEJP";
             string expected = "PUSZEK";
+            // Act
+            string actual = cipher.Decrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        public void CaesarDecryptValidInputWithSpace()
+        {
+            // Arrange
+            CaesarCipher cipher = new CaesarCipher();
+            string input = "ASDF TEST";
+            string expected = "VNYA OZNO";
             // Act
             string actual = cipher.Decrypt(input);
 
@@ -48,13 +75,40 @@ namespace CipherUnitTest
             Assert.AreEqual(expected, actual);
         }
 
+        public void AffineEncryptValidInputWithSpace()
+        {
+            // Arrange
+            AffineCipher cipher = new AffineCipher();
+            string input = "PUSZEK";
+            string expected = "IFBCZL";
+            // Act
+            string actual = cipher.Encrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestMethod]
         public void AffineDecryptValidInput()
         {
             // Arrange
             AffineCipher cipher = new AffineCipher();
-            string input = "IFBCZL";
-            string expected = "PUSZEK";
+            string input = "test zxyq asdf";
+            string expected = "onho eqxt lhgu";
+            // Act
+            string actual = cipher.Decrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AffineDecryptValidInputWithSpace()
+        {
+            // Arrange
+            AffineCipher cipher = new AffineCipher();
+            string input = "test zxyq asdf";
+            string expected = "qzbq cynx rbko";
             // Act
             string actual = cipher.Decrypt(input);
 
@@ -77,12 +131,40 @@ namespace CipherUnitTest
         }
 
         [TestMethod]
+        public void VigenereEncryptValidInputWithSpace()
+        {
+            // Arrange
+            VigenereCipher cipher = new VigenereCipher();
+            string input = "asdf test zqok";
+            string expected = "kgwp hxch sacd";
+            // Act
+            string actual = cipher.Encrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void VigenereDecryptValidInput()
         {
             // Arrange
             VigenereCipher cipher = new VigenereCipher();
             string input = "ZILJSD";
             string expected = "PUSZEK";
+            // Act
+            string actual = cipher.Decrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void VigenereDecryptValidInputWithSpace()
+        {
+            // Arrange
+            VigenereCipher cipher = new VigenereCipher();
+            string input = "asdf test zqok";
+            string expected = "kgwp hxch sacd";
             // Act
             string actual = cipher.Decrypt(input);
 
