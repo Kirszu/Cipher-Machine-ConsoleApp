@@ -48,6 +48,7 @@ namespace CipherUnitTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
         public void CaesarDecryptValidInputWithSpace()
         {
             // Arrange
@@ -75,12 +76,13 @@ namespace CipherUnitTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
         public void AffineEncryptValidInputWithSpace()
         {
             // Arrange
             AffineCipher cipher = new AffineCipher();
-            string input = "PUSZEK";
-            string expected = "IFBCZL";
+            string input = "PUSZEK puszek";
+            string expected = "IFBCZL ifbczl";
             // Act
             string actual = cipher.Encrypt(input);
 
@@ -89,12 +91,40 @@ namespace CipherUnitTest
         }
 
         [TestMethod]
-        public void AffineDecryptValidInput()
+        public void AffineDecryptValidInputUpperCase()
         {
             // Arrange
             AffineCipher cipher = new AffineCipher();
-            string input = "test zxyq asdf";
-            string expected = "onho eqxt lhgu";
+            string input = "TEST";
+            string expected = "ONHO";
+            // Act
+            string actual = cipher.Decrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AffineDecryptValidInputLowerCase()
+        {
+            // Arrange
+            AffineCipher cipher = new AffineCipher();
+            string input = "test";
+            string expected = "onho";
+            // Act
+            string actual = cipher.Decrypt(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AffineDecryptValidInputMixedCase()
+        {
+            // Arrange
+            AffineCipher cipher = new AffineCipher();
+            string input = "testTESTtEsT";
+            string expected = "onhoONHOoNhO";
             // Act
             string actual = cipher.Decrypt(input);
 

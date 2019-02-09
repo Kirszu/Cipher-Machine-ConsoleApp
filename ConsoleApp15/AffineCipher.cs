@@ -8,8 +8,8 @@ namespace ConsoleApp15
         {
             int keyA = 15;
             int keyB = 17;
-            String text = input;
-            text = text.ToUpper();
+            String temp = input;
+            String text = input.ToUpper();
             char[] charArray = text.ToCharArray();
             int[] asciiArray = new int[text.Length];
             int[] newAsciiArray = new int[text.Length];
@@ -33,9 +33,15 @@ namespace ConsoleApp15
                 }
                 charArray[i] = (char)asciiCharsAdded[i];
             }
-            String result = new string(charArray);
-            Console.WriteLine("Affine Decrypt (15, 17) IFBCZL -> " + result);
-            return result;
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (Char.IsLower(temp[i]))
+                {
+                    charArray[i] = Char.ToLower(charArray[i]);
+                }
+            }
+            return new string(charArray);
         }
 
         public string Encrypt(string input)
@@ -65,13 +71,11 @@ namespace ConsoleApp15
                 charArray[i] = (char)asciiCharsAdded[i];
             }
             String result = new string(charArray);
-            Console.WriteLine("Affine Encrypt (15, 17) PUSZEK -> " + result);
             return result;
         }
 
         public string StripAccent(string input)
         {
-            Console.WriteLine("Work");
             return input;
         }
 
