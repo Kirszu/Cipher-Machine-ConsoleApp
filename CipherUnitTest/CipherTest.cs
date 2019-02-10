@@ -138,7 +138,7 @@ namespace CipherUnitTest
             // Arrange
             AffineCipher cipher = new AffineCipher();
             string input = "test zxyq asdf";
-            string expected = "qzbq cynx rbko";
+            string expected = "onho eqxt lhgu";
             // Act
             string actual = cipher.Decrypt(input);
 

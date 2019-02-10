@@ -22,16 +22,24 @@ namespace ConsoleApp15
             for (int i = 0; i < text.Length; i++)
             {
                 asciiArray[i] = (int)charArray[i];
-                newAsciiArray[i] = (inv * (asciiArray[i] - keyB) % 26) + 65;
-                if (newAsciiArray[i] >= 78)
+                if (asciiArray[i] == 32)
                 {
-                    asciiCharsAdded[i] = newAsciiArray[i] - 13;
+                    charArray[i] = (char)32;
                 }
                 else
                 {
-                    asciiCharsAdded[i] = newAsciiArray[i] + 13;
+                    newAsciiArray[i] = (inv * (asciiArray[i] - keyB) % 26) + 65;
+                    if (newAsciiArray[i] >= 78)
+                    {
+                        asciiCharsAdded[i] = newAsciiArray[i] - 13;
+                    }
+                    else
+                    {
+                        asciiCharsAdded[i] = newAsciiArray[i] + 13;
+                    }
+                    charArray[i] = (char)asciiCharsAdded[i];
                 }
-                charArray[i] = (char)asciiCharsAdded[i];
+               
             }
 
             for (int i = 0; i < temp.Length; i++)
@@ -48,8 +56,8 @@ namespace ConsoleApp15
         {
             int keyA = 15;
             int keyB = 17;
-            String text = input;
-            text = text.ToUpper();
+            String temp = input;
+            String text = input.ToUpper();
             char[] charArray = text.ToCharArray();
             int[] asciiArray = new int[text.Length];
             int[] newAsciiArray = new int[text.Length];
@@ -59,19 +67,32 @@ namespace ConsoleApp15
             for (int i = 0; i < text.Length; i++)
             {
                 asciiArray[i] = (int)charArray[i];
-                newAsciiArray[i] = ((keyA * asciiArray[i] + keyB) % 26) + 65;
-                if (newAsciiArray[i] >= 78)
+                if (asciiArray[i] == 32)
                 {
-                    asciiCharsAdded[i] = newAsciiArray[i] - 13;
+                    charArray[i] = (char)32;
                 }
                 else
                 {
-                    asciiCharsAdded[i] = newAsciiArray[i] + 13;
+                    newAsciiArray[i] = ((keyA * asciiArray[i] + keyB) % 26) + 65;
+                    if (newAsciiArray[i] >= 78)
+                    {
+                        asciiCharsAdded[i] = newAsciiArray[i] - 13;
+                    }
+                    else
+                    {
+                        asciiCharsAdded[i] = newAsciiArray[i] + 13;
+                    }
+                    charArray[i] = (char)asciiCharsAdded[i];
                 }
-                charArray[i] = (char)asciiCharsAdded[i];
             }
-            String result = new string(charArray);
-            return result;
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (Char.IsLower(temp[i]))
+                {
+                    charArray[i] = Char.ToLower(charArray[i]);
+                }
+            }
+            return new string(charArray);
         }
 
         public string StripAccent(string input)
