@@ -6,8 +6,8 @@ namespace ConsoleApp15
     {
         public string Decrypt(string input)
         {
-            String text = input;
-            text = text.ToUpper();
+            String temp = input;
+            string text = input.Replace(" ", "").ToUpper();
 
             String key = "KOT";
             key = key.ToUpper();
@@ -32,13 +32,32 @@ namespace ConsoleApp15
                     asciiFinalText[i] = (char)(asciiNewText[i] + 65);
                 }
                 else
-                {
+                 {
                     asciiFinalText[i] = (char)(asciiNewText[i] + 91);
+                 }       
+            }
+            char[] resultArray = new char[temp.Length];
+            int j = 0;
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (temp[i] == 32)
+                {
+                    resultArray[i] = ' ';
+                }
+                else
+                {
+                    if (Char.IsLower(temp[i]))
+                    {
+                        resultArray[i] = Char.ToLower(asciiFinalText[j]);
+                    }
+                    else
+                    {
+                        resultArray[i] = asciiFinalText[j];
+                    }
+                    j++;
                 }
             }
-            String result = new string(asciiFinalText);
-            Console.WriteLine("Vigenere Decrypt (KOT) ZILJSD -> " + result);
-            return result;
+            return new string(resultArray);
         }
 
         private void FillArray(char[] keyArray, int textLength, int keyLength, string key)
@@ -64,8 +83,8 @@ namespace ConsoleApp15
 
         public string Encrypt(string input)
         {
-            String text = input;
-            text = text.ToUpper();
+            String temp = input;
+            string text = input.Replace(" ", "").ToUpper();
 
             String key = "KOT";
             key = key.ToUpper();
@@ -95,9 +114,28 @@ namespace ConsoleApp15
                 }
             }
 
-            String result = new string(asciiFinalText);
-            Console.WriteLine("Vigenere Encrypt (KOT) PUSZEK -> " + result);
-            return result;
+            char[] resultArray = new char[temp.Length];
+            int j = 0;
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (temp[i] == 32)
+                {
+                    resultArray[i] = ' ';
+                }
+                else
+                {
+                    if (Char.IsLower(temp[i]))
+                    {
+                        resultArray[i] = Char.ToLower(asciiFinalText[j]);
+                    }
+                    else
+                    {
+                        resultArray[i] = asciiFinalText[j];
+                    }
+                    j++;
+                }
+            }
+            return new string(resultArray);
         }
 
         public string StripAccent(string input)

@@ -165,8 +165,8 @@ namespace CipherUnitTest
         {
             // Arrange
             VigenereCipher cipher = new VigenereCipher();
-            string input = "asdf test zqok";
-            string expected = "kgwp hxch sacd";
+            string input = "asdf test zqok ASDF asDFZWsadasdDSFertfdvXZ";
+            string expected = "kgwp hxch sacd KGWP olNTSGgtnolnRLPskdtwfLS";
             // Act
             string actual = cipher.Encrypt(input);
 
@@ -193,8 +193,8 @@ namespace CipherUnitTest
         {
             // Arrange
             VigenereCipher cipher = new VigenereCipher();
-            string input = "asdf test zqok";
-            string expected = "kgwp hxch sacd";
+            string input = "QWErTy aSdfgHujIIkolP Zx CVCVBnnmMM";
+            string expected = "GILhFf qEkvsOkvPYwvbB Gn OCSHIdztCY";
             // Act
             string actual = cipher.Decrypt(input);
 
