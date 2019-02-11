@@ -11,42 +11,37 @@ namespace ConsoleApp15
             String temp = input;
             String text = input.ToUpper();
             char[] charArray = text.ToCharArray();
-            int[] asciiArray = new int[text.Length];
-            int[] newAsciiArray = new int[text.Length];
-            int[] asciiCharsAdded = new int[text.Length];
+            int[] newCharrArray = new int[text.Length];
 
-            // Invertion of keyA
             int inv = InvertionOfKey(keyA);
 
-            // Using the affine decipher formula
+            // Affine decipher formula
             for (int i = 0; i < text.Length; i++)
             {
-                asciiArray[i] = (int)charArray[i];
-                if (asciiArray[i] == 32)
+                if (charArray[i] == 32)
                 {
                     charArray[i] = (char)32;
                 }
                 else
                 {
-                    newAsciiArray[i] = (inv * (asciiArray[i] - keyB) % 26) + 65;
-                    if (newAsciiArray[i] >= 78)
+                    newCharrArray[i] = (inv * (charArray[i] - keyB) % 26) + 65;
+                    if (newCharrArray[i] >= 78)
                     {
-                        asciiCharsAdded[i] = newAsciiArray[i] - 13;
+                        charArray[i] = (char)(newCharrArray[i] - 13);
                     }
                     else
                     {
-                        asciiCharsAdded[i] = newAsciiArray[i] + 13;
+                        charArray[i] = (char)(newCharrArray[i] + 13);
                     }
-                    charArray[i] = (char)asciiCharsAdded[i];
                 }
                
             }
 
             for (int i = 0; i < temp.Length; i++)
             {
-                if (Char.IsLower(temp[i]))
+                if (char.IsLower(temp[i]))
                 {
-                    charArray[i] = Char.ToLower(charArray[i]);
+                    charArray[i] = char.ToLower(charArray[i]);
                 }
             }
             return new string(charArray);
@@ -56,8 +51,8 @@ namespace ConsoleApp15
         {
             int keyA = 15;
             int keyB = 17;
-            String temp = input;
-            String text = input.ToUpper();
+            string temp = input;
+            string text = input.ToUpper();
             char[] charArray = text.ToCharArray();
             int[] asciiArray = new int[text.Length];
             int[] newAsciiArray = new int[text.Length];
@@ -87,9 +82,9 @@ namespace ConsoleApp15
             }
             for (int i = 0; i < temp.Length; i++)
             {
-                if (Char.IsLower(temp[i]))
+                if (char.IsLower(temp[i]))
                 {
-                    charArray[i] = Char.ToLower(charArray[i]);
+                    charArray[i] = char.ToLower(charArray[i]);
                 }
             }
             return new string(charArray);
