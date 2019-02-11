@@ -11,7 +11,6 @@ namespace ConsoleApp15
             String temp = input;
             String text = input.ToUpper();
             char[] charArray = text.ToCharArray();
-            int[] newCharrArray = new int[text.Length];
 
             int inv = InvertionOfKey(keyA);
 
@@ -24,27 +23,19 @@ namespace ConsoleApp15
                 }
                 else
                 {
-                    newCharrArray[i] = (inv * (charArray[i] - keyB) % 26) + 65;
-                    if (newCharrArray[i] >= 78)
+                    charArray[i] = (char)((inv * (charArray[i] - keyB) % 26) + 65);
+                    if (charArray[i] >= 78)
                     {
-                        charArray[i] = (char)(newCharrArray[i] - 13);
+                        charArray[i] = (char)(charArray[i] - 13);
                     }
                     else
                     {
-                        charArray[i] = (char)(newCharrArray[i] + 13);
+                        charArray[i] = (char)(charArray[i] + 13);
                     }
                 }
                
             }
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                if (char.IsLower(temp[i]))
-                {
-                    charArray[i] = char.ToLower(charArray[i]);
-                }
-            }
-            return new string(charArray);
+            return SetEqualCharCase(charArray, temp);
         }
 
         public string Encrypt(string input)
@@ -54,40 +45,28 @@ namespace ConsoleApp15
             string temp = input;
             string text = input.ToUpper();
             char[] charArray = text.ToCharArray();
-            int[] asciiArray = new int[text.Length];
-            int[] newAsciiArray = new int[text.Length];
-            int[] asciiCharsAdded = new int[text.Length];
 
             // Using the affine cipher formula
             for (int i = 0; i < text.Length; i++)
             {
-                asciiArray[i] = (int)charArray[i];
-                if (asciiArray[i] == 32)
+                if (charArray[i] == 32)
                 {
                     charArray[i] = (char)32;
                 }
                 else
                 {
-                    newAsciiArray[i] = ((keyA * asciiArray[i] + keyB) % 26) + 65;
-                    if (newAsciiArray[i] >= 78)
+                    charArray[i] = (char)(((keyA * charArray[i] + keyB) % 26) + 65);
+                    if (charArray[i] >= 78)
                     {
-                        asciiCharsAdded[i] = newAsciiArray[i] - 13;
+                        charArray[i] = (char)(charArray[i] - 13);
                     }
                     else
                     {
-                        asciiCharsAdded[i] = newAsciiArray[i] + 13;
+                        charArray[i] = (char)(charArray[i] + 13);
                     }
-                    charArray[i] = (char)asciiCharsAdded[i];
                 }
             }
-            for (int i = 0; i < temp.Length; i++)
-            {
-                if (char.IsLower(temp[i]))
-                {
-                    charArray[i] = char.ToLower(charArray[i]);
-                }
-            }
-            return new string(charArray);
+            return SetEqualCharCase(charArray, temp);
         }
 
         public string StripAccent(string input)
@@ -110,7 +89,17 @@ namespace ConsoleApp15
             }
             return inv;
         }
+
+        private string SetEqualCharCase(char[] inputToChange, string caseTemplate)
+        {
+            for (int i = 0; i < inputToChange.Length; i++)
+            {
+                if (char.IsLower(caseTemplate[i]))
+                {
+                    inputToChange[i] = char.ToLower(inputToChange[i]);
+                }
+            }
+            return new string(inputToChange);
+        }
     }
-
-
 }
