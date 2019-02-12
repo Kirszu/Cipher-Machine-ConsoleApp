@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp15
 {
@@ -7,7 +8,7 @@ namespace ConsoleApp15
         public string Decrypt(string input)
         {
             String temp = input;
-            string text = input.Replace(" ", "").ToUpper();
+            string text = RemoveSpecialCharacters(input.Replace(" ", "").ToUpper());
 
             String key = "KOT";
             key = key.ToUpper();
@@ -84,7 +85,8 @@ namespace ConsoleApp15
         public string Encrypt(string input)
         {
             String temp = input;
-            string text = input.Replace(" ", "").ToUpper();
+            string text = RemoveSpecialCharacters(input.Replace(" ", "").ToUpper());
+            
 
             String key = "KOT";
             key = key.ToUpper();
@@ -138,10 +140,9 @@ namespace ConsoleApp15
             return new string(resultArray);
         }
 
-        public string StripAccent(string input)
+        public string RemoveSpecialCharacters(string input)
         {
-            Console.WriteLine("Work");
-            return input;
+            return Regex.Replace(input, "[^0-9A-Za-z ,]", "");
         }
     }
 

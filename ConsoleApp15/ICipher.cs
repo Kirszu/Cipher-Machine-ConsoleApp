@@ -4,7 +4,7 @@
     {
         string Encrypt(string input);
         string Decrypt(string input);
-        string StripAccent(string input);
+        string RemoveSpecialCharacters(string input);
 
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp15
 {
@@ -92,10 +93,9 @@ namespace ConsoleApp15
             return result;
         }
 
-        public string StripAccent(string input)
+        public string RemoveSpecialCharacters(string input)
         {
-            Console.WriteLine("Work");
-            return input;
+            return Regex.Replace(input, "[^0-9A-Za-z ,]", "");
         }
     }
 

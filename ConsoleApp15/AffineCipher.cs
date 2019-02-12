@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp15
 {
@@ -8,8 +9,8 @@ namespace ConsoleApp15
         {
             int keyA = 15;
             int keyB = 17;
-            String temp = input;
-            String text = input.ToUpper();
+            string temp = RemoveSpecialCharacters(input);
+            string text = temp.ToUpper();
             char[] charArray = text.ToCharArray();
 
             int inv = InvertionOfKey(keyA);
@@ -42,8 +43,8 @@ namespace ConsoleApp15
         {
             int keyA = 15;
             int keyB = 17;
-            string temp = input;
-            string text = input.ToUpper();
+            string temp = RemoveSpecialCharacters(input);
+            string text = temp.ToUpper();
             char[] charArray = text.ToCharArray();
 
             // Using the affine cipher formula
@@ -69,9 +70,9 @@ namespace ConsoleApp15
             return SetEqualCharCase(charArray, temp);
         }
 
-        public string StripAccent(string input)
+        public string RemoveSpecialCharacters(string input)
         {
-            return input;
+            return Regex.Replace(input, "[^0-9A-Za-z ,]", "");
         }
 
         public int InvertionOfKey(int key)

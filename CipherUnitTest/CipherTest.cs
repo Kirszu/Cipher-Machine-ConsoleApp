@@ -67,7 +67,7 @@ namespace CipherUnitTest
         {
             // Arrange
             AffineCipher cipher = new AffineCipher();
-            string input = "PUSZEK";
+            string input = "PUSZEK#@$$%";
             string expected = "IFBCZL";
             // Act
             string actual = cipher.Encrypt(input);
@@ -81,7 +81,7 @@ namespace CipherUnitTest
         {
             // Arrange
             AffineCipher cipher = new AffineCipher();
-            string input = "PUSZEK puszek";
+            string input = "PUSZEK pusz$#ek";
             string expected = "IFBCZL ifbczl";
             // Act
             string actual = cipher.Encrypt(input);
