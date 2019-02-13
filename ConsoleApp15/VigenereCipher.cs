@@ -7,10 +7,10 @@ namespace ConsoleApp15
     {
         public string Decrypt(string input)
         {
-            String temp = input;
+            string temp = input;
             string text = RemoveSpecialCharacters(input.Replace(" ", "").ToUpper());
 
-            String key = "KOT";
+            string key = "KOT";
             key = key.ToUpper();
 
             char[] textArray = text.ToCharArray();
@@ -18,23 +18,16 @@ namespace ConsoleApp15
 
             //Adding characters to keyArray until there is the same amount of chars as in textArray
             FillArray(keyArray, text.Length, key.Length, key);
-            int[] asciiTextArray = new int[text.Length];
-            int[] asciiKeyArray = new int[text.Length];
-            int[] asciiNewText = new int[text.Length];
-            char[] asciiFinalText = new char[text.Length];
 
             for (int i = 0; i < text.Length; i++)
-            {
-                asciiTextArray[i] = (int)textArray[i];
-                asciiKeyArray[i] = (int)keyArray[i];
-                asciiNewText[i] = asciiTextArray[i] - asciiKeyArray[i];
-                if (asciiNewText[i] >= 0)
+            {            
+                if (textArray[i] - keyArray[i] >= 0)
                 {
-                    asciiFinalText[i] = (char)(asciiNewText[i] + 65);
+                    textArray[i] = (char)(textArray[i] - keyArray[i] + 65);
                 }
                 else
                  {
-                    asciiFinalText[i] = (char)(asciiNewText[i] + 91);
+                    textArray[i] = (char)(textArray[i] - keyArray[i] + 91);
                  }       
             }
             char[] resultArray = new char[temp.Length];
@@ -47,13 +40,13 @@ namespace ConsoleApp15
                 }
                 else
                 {
-                    if (Char.IsLower(temp[i]))
+                    if (char.IsLower(temp[i]))
                     {
-                        resultArray[i] = Char.ToLower(asciiFinalText[j]);
+                        resultArray[i] = char.ToLower(textArray[j]);
                     }
                     else
                     {
-                        resultArray[i] = asciiFinalText[j];
+                        resultArray[i] = textArray[j];
                     }
                     j++;
                 }
@@ -84,11 +77,10 @@ namespace ConsoleApp15
 
         public string Encrypt(string input)
         {
-            String temp = input;
+            string temp = input;
             string text = RemoveSpecialCharacters(input.Replace(" ", "").ToUpper());
-            
 
-            String key = "KOT";
+            string key = "KOT";
             key = key.ToUpper();
             char[] textArray = text.ToCharArray();
             char[] keyArray = new char[text.Length];
@@ -96,23 +88,15 @@ namespace ConsoleApp15
             //Adding characters to keyArray until there is the same amount of chars as in textArray
             FillArray(keyArray, text.Length, key.Length, key);
 
-            int[] asciiTextArray = new int[text.Length];
-            int[] asciiKeyArray = new int[text.Length];
-            int[] asciiNewText = new int[text.Length];
-            char[] asciiFinalText = new char[text.Length];
-
             for (int i = 0; i < text.Length; i++)
             {
-                asciiTextArray[i] = (int)textArray[i];
-                asciiKeyArray[i] = (int)keyArray[i];
-                asciiNewText[i] = asciiTextArray[i] + asciiKeyArray[i];
-                if (asciiNewText[i] > 155)
+                if (textArray[i] + keyArray[i] > 155)
                 {
-                    asciiFinalText[i] = (char)(asciiNewText[i] - 91);
+                    textArray[i] = (char)(textArray[i] + keyArray[i] - 91);
                 }
                 else
                 {
-                    asciiFinalText[i] = (char)(asciiNewText[i] - 65);
+                    textArray[i] = (char)(textArray[i] + keyArray[i] - 65);
                 }
             }
 
@@ -126,13 +110,13 @@ namespace ConsoleApp15
                 }
                 else
                 {
-                    if (Char.IsLower(temp[i]))
+                    if (char.IsLower(temp[i]))
                     {
-                        resultArray[i] = Char.ToLower(asciiFinalText[j]);
+                        resultArray[i] = char.ToLower(textArray[j]);
                     }
                     else
                     {
-                        resultArray[i] = asciiFinalText[j];
+                        resultArray[i] = textArray[j];
                     }
                     j++;
                 }
