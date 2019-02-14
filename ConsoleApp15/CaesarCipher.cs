@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace ConsoleApp15
 {
@@ -43,15 +42,13 @@ namespace ConsoleApp15
                     }
                 }
                 charArray[i] = (char)asciiArray[i];
-            }
-            String result = new string(charArray);
-            Console.WriteLine("Caesar Decrypt (5) UZXEJP -> " + result);
-            return result;
+            }             
+            return new string(charArray);
         }
 
         public string Encrypt(string input)
         {
-            String text = input;
+            string text = input;
             int key = 5;
             char[] charArray = text.ToCharArray();
             int[] asciiArray = new int[text.Length];
@@ -88,9 +85,7 @@ namespace ConsoleApp15
                 }
                 charArray[i] = (char)asciiArray[i];
             }
-            String result = new string(charArray);
-            Console.WriteLine("Caesar Decrypt (5) PUSZEK -> " + result);
-            return result;
+            return new string(charArray);
         }
 
         public string RemoveSpecialCharacters(string input)
